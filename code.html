@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fictional Product Pricing</title>
+    <style>
+        /* Your existing styles */
+
+        /* Additional Styles for Interactive Elements */
+        .toggle-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .toggle-button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .toggle-button:hover {
+            background-color: #555;
+        }
+
+        /* Additional Styles for Customization */
+        .customization-form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 600px) {
+            .pricing-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Fictional Product Pricing</h1>
+    </header>
+
+    <!-- Interactive Elements: Pricing Toggles -->
+    <div class="toggle-container">
+        <button class="toggle-button" onclick="showMonthly()">Monthly</button>
+        <button class="toggle-button" onclick="showAnnual()">Annual</button>
+    </div>
+
+    <!-- Pricing Structure: Pricing Cards -->
+    <div class="pricing-container">
+
+        <div class="pricing-card" id="basic-monthly">
+            <h2>Basic</h2>
+            <p>For individuals</p>
+            <div class="price">$9.99/month</div>
+            <button>Select</button>
+        </div>
+
+        <div class="pricing-card" id="pro-monthly">
+            <h2>Pro</h2>
+            <p>For small businesses</p>
+            <div class="price">$19.99/month</div>
+            <button>Select</button>
+        </div>
+
+        <div class="pricing-card" id="enterprise-monthly">
+            <h2>Enterprise</h2>
+            <p>For large enterprises</p>
+            <div class="price">$49.99/month</div>
+            <button>Select</button>
+        </div>
+
+        <div class="pricing-card" id="basic-annual" style="display: none;">
+            <h2>Basic</h2>
+            <p>For individuals</p>
+            <div class="price">$99.99/year</div>
+            <button>Select</button>
+        </div>
+
+        <div class="pricing-card" id="pro-annual" style="display: none;">
+            <h2>Pro</h2>
+            <p>For small businesses</p>
+            <div class="price">$199.99/year</div>
+            <button>Select</button>
+        </div>
+
+        <div class="pricing-card" id="enterprise-annual" style="display: none;">
+            <h2>Enterprise</h2>
+            <p>For large enterprises</p>
+            <div class="price">$499.99/year</div>
+            <button>Select</button>
+        </div>
+
+    </div>
+
+    <!-- Currency and Unit Customization -->
+    <div class="customization-form">
+        <label for="currency">Select Currency:</label>
+        <select id="currency" onchange="changeCurrency()">
+            <option value="$">USD</option>
+            <option value="€">EUR</option>
+            <option value="£">GBP</option>
+        </select>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Fictional Product. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Interactive Elements: Pricing Toggles
+        function showMonthly() {
+            document.getElementById("basic-monthly").style.display = "block";
+            document.getElementById("pro-monthly").style.display = "block";
+            document.getElementById("enterprise-monthly").style.display = "block";
+
+            document.getElementById("basic-annual").style.display = "none";
+            document.getElementById("pro-annual").style.display = "none";
+            document.getElementById("enterprise-annual").style.display = "none";
+        }
+
+        function showAnnual() {
+            document.getElementById("basic-monthly").style.display = "none";
+            document.getElementById("pro-monthly").style.display = "none";
+            document.getElementById("enterprise-monthly").style.display = "none";
+
+            document.getElementById("basic-annual").style.display = "block";
+            document.getElementById("pro-annual").style.display = "block";
+            document.getElementById("enterprise-annual").style.display = "block";
+        }
+
+        // Currency Customization
+        function changeCurrency() {
+            var currencySymbol = document.getElementById("currency").value;
+            var prices = document.getElementsByClassName("price");
+
+            for (var i = 0; i < prices.length; i++) {
+                prices[i].innerText = prices[i].innerText.replace(/^\S+/, currencySymbol);
+            }
+        }
+    </script>
+</body>
+</html>
